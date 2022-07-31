@@ -30,10 +30,12 @@ with open(filename) as f:
                 dates.append(date)
             else:
                 break
-            
-    # For each date, find high temps from all stations
-    high_avgs = []
-    highs = []
+    
+with open(filename) as f:
+    reader = csv.reader(f)
+    header_row = next(reader)
+
+    highs_for_date = []
     for date in dates:
         for row in reader:
             if row[2] == date:
@@ -42,9 +44,10 @@ with open(filename) as f:
                 except ValueError:
                     continue
                 else:
-                    highs.append(TMAX)
+                    highs_for_date.append(TMAX)
             else:
                 continue
-                    
-print(dates)            
-print(highs)
+    high_avgs = mean(highs_for_date)
+                        
+print(highs_for_date)            
+print(high_avgs)
