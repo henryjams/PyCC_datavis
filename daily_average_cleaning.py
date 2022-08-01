@@ -14,40 +14,25 @@ from datetime import datetime
 # File handling
 filename = 'data/new_orleans_2022_daily_weather.csv'
 
-with open(filename) as f:
-    reader = csv.reader(f)
-    header_row = next(reader)
-    
-    # Assemble a list of all dates in the file
-    dates = []
-    for row in reader:
-        try:
-            date = (row[2])
-        except ValueError:
-            continue
-        else:
-            if date not in dates:
-                dates.append(date)
-            else:
-                break
-    
-with open(filename) as f:
-    reader = csv.reader(f)
-    header_row = next(reader)
+daily_high_avg = []
 
-    highs_for_date = []
-    for date in dates:
+with open(filename) as f:
+    reader = csv.reader(f)
+    header_row = next(reader)
+    
+    highs = []
+    for row in reader:
+        current_date = row[2]
         for row in reader:
-            if row[2] == date:
+            if current_date == row[2]:
                 try:
-                    TMAX = int(row[6])
+                    high = int(row[6])
                 except ValueError:
                     continue
                 else:
-                    highs_for_date.append(TMAX)
-            else:
-                continue
-    high_avgs = mean(highs_for_date)
-                        
-print(highs_for_date)            
-print(high_avgs)
+                    highs.append(high)
+                    
+daily_high_avg.append(mean(highs))
+            
+print(highs)
+print(daily_high_avg)
