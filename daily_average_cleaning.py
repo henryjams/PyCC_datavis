@@ -7,7 +7,6 @@ Created on Sun Jul 31 12:35:40 2022
 
 import csv
 import matplotlib as plt
-import pandas as pd
 
 from statistics import mean
 from datetime import datetime
