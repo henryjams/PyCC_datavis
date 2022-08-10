@@ -42,4 +42,4 @@ data = [{
 my_layout = Layout(title=title, title_x=0.5)
 
 fig = {'data': data, 'layout': my_layout}
-offline.plot(fig, filename='16-6_global_earthquakes.html')
+offline.plot(fig, filename='chpt16_global_earthquakes.html')
